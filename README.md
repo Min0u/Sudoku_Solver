@@ -62,4 +62,9 @@ After inputting the puzzle, the program will attempt to solve it and display the
 unsolvable with the current rules, the program will prompt you to manually input numbers to aid in solving the puzzle.
 
 **Note:**
-Feel free to customize the placeholder `<repository-url>` and `<repository-directory>` with your actual repository URL and directory name, and `<MainClass>` with the name of your main class that contains the `public static void main(String[] args)` method.
+Feel free to customize the placeholder `<repository-url>` and `<repository-directory>` with your actual repository URL 
+and directory name, and `<MainClass>` with the name of your main class that contains the `public static void main(String[] args)` method.
+
+## Author
+KHAO Chloé - 22106244     
+M1 Informatique - Université Côte d'Azur
