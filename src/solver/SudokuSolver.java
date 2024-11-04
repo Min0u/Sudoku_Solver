@@ -80,10 +80,7 @@ public class SudokuSolver {
         if (dr1Uses > 0 && dr2Uses > 0 && dr3Uses == 0) {
             return DifficultyLevel.MEDIUM;
         }
-        if (dr1Uses > 0 && dr2Uses > 0 && dr3Uses > 0) {
-            return DifficultyLevel.HARD;
-        }
-        return DifficultyLevel.VERY_HARD;
+        return DifficultyLevel.HARD;
     }
 
     public Cell[][] copyGrid(Cell[][] grid) {
@@ -118,6 +115,10 @@ public class SudokuSolver {
             int solvedCount = 0;
             Map<DifficultyLevel, Integer> difficultyCount = new EnumMap<>(DifficultyLevel.class);
 
+            for (DifficultyLevel level : DifficultyLevel.values()) {
+                difficultyCount.put(level, 0);
+            }
+
             for (int i = 0; i < totalGrids; i++) {
                 System.out.println("\n\u001B[35m\u001B[1mSolving grid #" + (i + 1) + ":" + RESET);
 
@@ -137,8 +138,7 @@ public class SudokuSolver {
             System.out.println("\u001B[36mSolved grids: " + solvedCount + RESET);
             System.out.println("\u001B[32mEasy: " + difficultyCount.get(DifficultyLevel.EASY) + RESET);
             System.out.println("\u001B[33mMedium: " + difficultyCount.get(DifficultyLevel.MEDIUM) + RESET);
-            System.out.println("\u001B[35mHard: " + difficultyCount.get(DifficultyLevel.HARD) + RESET);
-            System.out.println("\u001B[31mVery Hard: " + difficultyCount.get(DifficultyLevel.VERY_HARD) + RESET);
+            System.out.println("\u001B[31mHard: " + difficultyCount.get(DifficultyLevel.HARD) + RESET);
             System.out.printf("Percentage solved: %.2f%%\n", percentageSolved);
         } else {
             System.out.println("No valid grids were provided.");
