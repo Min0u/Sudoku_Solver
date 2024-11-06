@@ -8,7 +8,7 @@ public class DR2 implements DeductionRule {
 
     // DR2 ("Hidden Single" rule): If a value can only appear in one cell in a row, column,
     // or 3x3 box, then that cell must contain that value.
-
+    
     private static DR2 instance;
 
     private DR2() {
