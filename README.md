@@ -53,14 +53,14 @@ Before you begin, make sure you have the **Java Development Kit (JDK)** installe
    
 ### Input the Sudoku Puzzle
 
-The program will ask you to input the sudoku puzzle. You can enter the grid in one of the following ways:  
+The program will ask you to input the sudoku puzzle. You can enter the grid in one of the following ways and each number should be separated by a comma :
 - As a single line of 81 integers.
 - Row by row, with 9 integers per row.
 - From a file, with each grid on a separate line.
 
-After inputting the puzzle, the program will attempt to solve it and display the solution. If the puzzle is 
-unsolvable with the current rules, the program will prompt you to manually input numbers to aid in solving the puzzle.
+After inputting the puzzle, the program will try to solve it using the deduction rules. If the puzzle is solvable, it will display the solution. If the puzzle is unsolvable using the current rules, the program will prompt you to manually input numbers to help solve the puzzle.
 
+You can choose not to assist the program, and the Sudoku puzzle will remain unsolved. If you choose to help, the program will guide you to provide missing numbers to aid in solving.
 ## Author
 KHAO Chloé - 22106244     
 M1 Informatique - Université Côte d'Azur

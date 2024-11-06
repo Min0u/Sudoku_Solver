@@ -15,10 +15,16 @@ public class SudokuGrid {
         }
     }
 
+    /*
+     * Gets the iterator for the grid.
+     */
     public CellIterator iterator() {
         return new SudokuCellIterator(this);
     }
 
+    /*
+     * Initializes the grid with empty cells.
+     */
     private Cell[][] initializeGrid() {
         Cell[][] newGrid = new Cell[9][9];
         for (int row = 0; row < 9; row++) {
@@ -29,12 +35,18 @@ public class SudokuGrid {
         return newGrid;
     }
 
+    /*
+     * Removes a possible value from a cell.
+     */
     public void removeCellPossibleValue(int row, int col, int value) {
         Cell cell = grid[row][col];
         cell.removePossibleValue(value);
     }
 
 
+    /*
+     * Sets the value of a cell.
+     */
     public void setValue(int row, int column, int value) {
         Cell cell = grid[row][column];
         cell.setValue(value);
@@ -53,14 +65,23 @@ public class SudokuGrid {
         }
     }
 
+    /*
+     * Gets the cell at the specified row and column.
+     */
     public Cell getCell(int row, int col) {
         return grid[row][col];
     }
 
+    /*
+     * Gets the grid.
+     */
     public Cell[][] getGrid() {
         return grid;
     }
 
+    /*
+     * Prints the grid.
+     */
     public void printGrid() {
         StringBuilder sb = new StringBuilder();
         CellIterator iterator = iterator();
@@ -82,6 +103,9 @@ public class SudokuGrid {
         System.out.print(sb);
     }
 
+    /*
+     * Checks if the grid is solved.
+     */
     public boolean isSolved() {
         CellIterator iterator = iterator();
         while (iterator.hasNext()) {
@@ -93,6 +117,9 @@ public class SudokuGrid {
         return true;
     }
 
+    /*
+     * Transforms the linear grid to a grid with -1 for empty cells.
+     */
     public int[] transformLinearGrid(int[] linearGrid) {
         int[] transformedGrid = new int[81];
         for (int i = 0; i < 81; i++) {

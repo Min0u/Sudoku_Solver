@@ -13,9 +13,14 @@ public class Utils {
     private static final String RED = "\u001B[31m";
     private static final String RESET = "\u001B[0m";
 
+    private static final String SEPARATOR = "[\\s,;]+";
+
     private Utils() {
     }
 
+    /*
+     * Prints the welcome message and instructions.
+     */
     public static void welcome() {
         System.out.println(BOLD_PINK + "Sudoku Solver" + RESET);
         System.out.println("Welcome to the Sudoku Solver!\n");
@@ -24,6 +29,9 @@ public class Utils {
         printExample();
     }
 
+    /*
+     * Prints the instructions for the user.
+     */
     private static void printInstructions() {
         System.out.println(TURQUOISE + "Instructions:" + RESET);
         System.out.println("Use 0 or -1 to represent empty cells.");
@@ -34,6 +42,9 @@ public class Utils {
         System.out.println("Type \"quit\" to exit.\n");
     }
 
+    /*
+     * Prints an example for row by row input.
+     */
     private static void printExample() {
         System.out.println(YELLOW + "Example for a row by row input:" + RESET);
         System.out.println("Enter row 1: 5,3,-1,-1,7,0,-1,-1,-1");
@@ -41,7 +52,12 @@ public class Utils {
         System.out.println();
     }
 
-    // Input Choices: E (Entire Grid), R (Row by Row), F (File)
+    /*
+     * Reads the input from the user.
+     *
+     * Allows the user to enter the entire grid, row by row, or read from a file.
+     * Based on the user's choice, it calls the appropriate method to read the input.
+     */
     public static List<int[]> readInput() {
         Scanner scanner = new Scanner(System.in);
         String choice = getUserChoice(scanner);
@@ -54,6 +70,9 @@ public class Utils {
         };
     }
 
+    /*
+     * Gets the user's choice for entering the grid.
+     */
     private static String getUserChoice(Scanner scanner) {
         while (true) {
             System.out.print("Enter the entire grid, row by row, or read from a file? (E/R/F): ");
@@ -68,7 +87,9 @@ public class Utils {
         }
     }
 
-    // Row by Row Logic
+    /*
+     * Reads the grid row by row.
+     */
     private static ArrayList<int[]> readRowByRow() {
         ArrayList<int[]> grids = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -83,13 +104,18 @@ public class Utils {
         return grids;
     }
 
+    /*
+     * Checks if the row data entered by the user is valid.
+     * If not, prompts the user to enter the row again.
+     */
     private static int[] getValidRowData(Scanner scanner, int row) {
         while (true) {
             System.out.print("Enter row " + (row + 1) + ": ");
             String input = scanner.nextLine().trim();
             validateQuitCommand(input);
 
-            String[] values = input.split(",");
+            // Split the input by any whitespace character, comma, or semicolon
+            String[] values = input.split(SEPARATOR);
             if (values.length == 9 && isValidInput(values)) {
                 return convertToIntArray(values);
             } else {
@@ -98,7 +124,9 @@ public class Utils {
         }
     }
 
-    // Entire Grid Logic
+    /*
+     * Reads the entire grid from the user.
+     */
     private static ArrayList<int[]> readEntireGrid() {
         Scanner scanner = new Scanner(System.in);
 
@@ -107,7 +135,8 @@ public class Utils {
             String input = scanner.nextLine().trim();
             validateQuitCommand(input);
 
-            String[] values = input.split(",");
+            // Split the input by any whitespace character, comma, or semicolon
+            String[] values = input.split(SEPARATOR);
             if (values.length == 81 && isValidInput(values)) {
                 ArrayList<int[]> grids = new ArrayList<>();
                 grids.add(convertToIntArray(values));
@@ -118,7 +147,9 @@ public class Utils {
         }
     }
 
-    // File Logic
+    /*
+     * Reads the grids from a file.
+     */
     private static ArrayList<int[]> readFromFile() {
         Scanner scanner = new Scanner(System.in);
 
@@ -136,7 +167,9 @@ public class Utils {
         }
     }
 
-    // Helper Methods
+    /*
+     * Parses the grids from the file.
+     */
     private static ArrayList<int[]> parseGridsFromFile(Scanner fileScanner) {
         ArrayList<int[]> grids = new ArrayList<>();
 
@@ -144,7 +177,8 @@ public class Utils {
             String line = fileScanner.nextLine().trim();
             if (line.isEmpty()) continue;
 
-            String[] values = line.split(",");
+            // Split the line by any whitespace character, comma, or semicolon
+            String[] values = line.split(SEPARATOR);
             if (values.length == 81 && isValidInput(values)) {
                 grids.add(convertToIntArray(values));
             } else {
@@ -155,6 +189,9 @@ public class Utils {
         return grids;
     }
 
+    /*
+     * Checks if the input values are valid.
+     */
     private static boolean isValidInput(String[] values) {
         for (String value : values) {
             try {
@@ -167,6 +204,9 @@ public class Utils {
         return true;
     }
 
+    /*
+     * Validates the quit command.
+     */
     public static void validateQuitCommand(String input) {
         if (input.equalsIgnoreCase("quit")) {
             System.out.println("\u001B[36mExiting program..." + RESET);
@@ -174,6 +214,9 @@ public class Utils {
         }
     }
 
+    /*
+     * Converts the string array to an integer array.
+     */
     private static int[] convertToIntArray(String[] values) {
         int[] intArray = new int[values.length];
         for (int i = 0; i < values.length; i++) {

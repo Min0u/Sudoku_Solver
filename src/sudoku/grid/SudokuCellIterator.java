@@ -11,11 +11,17 @@ public class SudokuCellIterator implements CellIterator {
         this.currentCol = 0;
     }
 
+    /*
+     * Checks if there are more cells to iterate.
+     */
     @Override
     public boolean hasNext() {
         return currentRow < 9 && currentCol < 9;
     }
 
+    /*
+     * Gets the next cell to iterate.
+     */
     @Override
     public Cell next() {
         if (!hasNext()) {

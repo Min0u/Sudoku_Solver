@@ -15,6 +15,9 @@ public class DR1 implements DeductionRule {
     private DR1() {
     }
 
+    /*
+     * Returns the instance of DR1.
+     */
     public static DR1 getInstance() {
         if (instance == null) {
             instance = new DR1();
@@ -22,6 +25,9 @@ public class DR1 implements DeductionRule {
         return instance;
     }
 
+    /*
+     * Applies the Naked Single rule to the grid.
+     */
     @Override
     public void applyRule(SudokuGrid grid) {
         CellIterator iterator = grid.iterator();

@@ -14,6 +14,9 @@ public class DR2 implements DeductionRule {
     private DR2() {
     }
 
+    /*
+     * Returns the instance of DR2.
+     */
     public static DR2 getInstance() {
         if (instance == null) {
             instance = new DR2();
@@ -21,6 +24,9 @@ public class DR2 implements DeductionRule {
         return instance;
     }
 
+    /*
+     * Applies the Hidden Single rule to the grid.
+     */
     @Override
     public void applyRule(SudokuGrid grid) {
         // Look for hidden singles in 3x3 boxes
@@ -41,6 +47,9 @@ public class DR2 implements DeductionRule {
         }
     }
 
+    /*
+     * Applies the Hidden Single rule to a row or column.
+     */
     private void applyHiddenSingleLine(SudokuGrid grid, int line, boolean isRow) {
         for (int value = 1; value <= 9; value++) {
             int possibleIndex = findUniqueValueIndex(grid, line, value, isRow);
@@ -51,6 +60,9 @@ public class DR2 implements DeductionRule {
         }
     }
 
+    /*
+     * Finds the index of a unique value in a row or column.
+     */
     private int findUniqueValueIndex(SudokuGrid grid, int line, int value, boolean isRow) {
         int count = 0;
         int possibleLocation = -1;
@@ -72,12 +84,18 @@ public class DR2 implements DeductionRule {
         return count == 1 ? possibleLocation : -1;
     }
 
+    /*
+     * Sets the value in the grid.
+     */
     private void setValueInGrid(SudokuGrid grid, int line, int index, int value, boolean isRow) {
         int row = isRow ? line : index;
         int col = isRow ? index : line;
         grid.setValue(row, col, value);
     }
 
+    /*
+     * Applies the Hidden Single rule to a 3x3 box.
+     */
     private void applyHiddenSingleBox(SudokuGrid grid, int boxRow, int boxCol) {
         for (int value = 1; value <= 9; value++) {
             int count = 0;

@@ -3,7 +3,7 @@ import sudoku.Utils;
 
 public class Main {
     public static void main(String[] args) {
-        Utils.welcome();
-        SudokuSolver.solveAllGrids();
+        Utils.welcome();              // Prints the welcome message and instructions.
+        SudokuSolver.solveAllGrids(); // Solves all the grids.
     }
 }

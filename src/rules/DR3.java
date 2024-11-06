@@ -17,6 +17,9 @@ public class DR3 implements DeductionRule {
     private DR3() {
     }
 
+    /*
+     * Returns the instance of DR3.
+     */
     public static DR3 getInstance() {
         if (instance == null) {
             instance = new DR3();
@@ -24,6 +27,9 @@ public class DR3 implements DeductionRule {
         return instance;
     }
 
+    /*
+     * Applies the Pointing Pair rule to the grid.
+     */
     @Override
     public void applyRule(SudokuGrid grid) {
         for (int boxRow = 0; boxRow < 9; boxRow += 3) {
@@ -33,6 +39,9 @@ public class DR3 implements DeductionRule {
         }
     }
 
+    /*
+     * Applies the Pointing Pair rule to a 3x3 box.
+     */
     private void applyPointingPairBox(SudokuGrid grid, int boxRow, int boxCol) {
         for (int value = 1; value <= 9; value++) {
             Set<Integer> possibleRows = new HashSet<>();
@@ -55,6 +64,9 @@ public class DR3 implements DeductionRule {
         }
     }
 
+    /*
+     * Checks if the value can only appear in one row or column within the 3x3 box.
+     */
     private void checkPointingPairLine(SudokuGrid grid, int boxRow, int boxCol, int value, Set<Integer> possibleLines, boolean isRow) {
         // If there's only one unique row or column where the value can appear in the 3x3 box
         if (possibleLines.size() == 1) {
@@ -65,6 +77,9 @@ public class DR3 implements DeductionRule {
         }
     }
 
+    /*
+     * Eliminates the value from the rest of the row or column outside the 3x3 box.
+     */
     private void eliminateOutsideBox(SudokuGrid grid, int boxRow, int boxCol, int value, int index, boolean isRow) {
         // Eliminate the value from the rest of the row or column outside the 3x3 box
         if (isRow) {
